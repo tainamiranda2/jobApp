@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+//import Login from './pages/login/Login';
+//import Rotas from './rotas';
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import Login from "./pages/login/Login";
+import Menu from "./pages/menu/Menu";
 
 export default function App() {
+  const Stack=createStackNavigator();
   return (
-    <View>
-      <Text>Oi</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+   <NavigationContainer >
+            <Stack.Navigator initialRouteName="Login">
+                <Stack.Screen name="Login" component={Login}/>
+                <Stack.Screen name="Menu" component={Menu}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+
+   
   );
 }
 
