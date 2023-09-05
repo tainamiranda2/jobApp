@@ -1,9 +1,9 @@
 import { View,Text } from "react-native";
 
-export default function Cargos (){
+export default function Respostas (){
     return(
         <View>
-            <Text>Cargos</Text>
+            <Text>Respostas</Text>
         </View>
     )
 }
