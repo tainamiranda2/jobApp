@@ -1,50 +1,43 @@
-import { View, Text, Button } from "react-native";
-
+import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Global from '../../styles/Global';
 
-export default function Menu (){
-    const navigation =useNavigation();
+export default function Menu() {
+    const navigation = useNavigation();
 
-    function Pages(page){
-        if(page=='Candidatura'){
+    function Pages(page) {
+        if (page == 'Candidatura') {
             navigation.navigate('Candidatura')
-        }else if(page=='Cargos'){
+        } else if (page == 'Cargos') {
             navigation.navigate('Cargos')
-        }else if(page=='Empresas'){
+        } else if (page == 'Empresas') {
             navigation.navigate('Empresas')
-        }else if(page=='Perfil'){
+        } else if (page == 'Perfil') {
             navigation.navigate('Perfil')
-        } else{
+        } else {
             navigation.navigate('Dashboard')
         }
-       
     }
 
-    return(
+    return (
         <View style={Global.container} >
             <Text>Notificação</Text>
-            <Text style={Global.Card} 
-            //title="Ver candidaturas" 
-            //onPress={()=>Pages('Candidatura')}
-            >Ver candidaturas</Text>
-            <Text style={Global.Card} 
-            //title="Ver empresas"
-           // onPress={()=>Pages('Empresas')}
-             >Ver empresas</Text>
-            <Text 
-             style={Global.Card} 
-           // title="Ver cargos"
-            // onPress={()=>Pages('Cargos')}
-             >Ver cargos</Text>
-            <Text  style={Global.Card} 
-            //title="Ver perfil" 
-          //  onPress={()=>Pages('Perfil')}
-          >Ver perfil</Text>
-            <Text style={Global.Card} 
-            //title="Dashboard"
-           //  onPress={()=>Pages('Dashboard')}
-           >Dashboard</Text>
+            
+            <TouchableOpacity onPress={() => Pages('Candidatura')}>
+                <Text style={Global.Card}>Ver candidaturas</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Pages('Empresas')}>
+                <Text style={Global. CardR}>Ver empresas</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Pages('Cargos')}>
+                <Text style={Global.Card}>Ver cargos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Pages('Perfil')}>
+                <Text style={Global. CardR}>Ver perfil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Pages('Dashboard')}>
+                <Text style={Global.Card}>Dashboard</Text>
+            </TouchableOpacity>
         </View>
     )
 }

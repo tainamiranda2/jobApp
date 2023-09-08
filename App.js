@@ -17,6 +17,7 @@ import Empresas from "./pages/empresas/Empresas";
 import Notificacao from "./pages/notificacao/Notificacao";
 
 import Global from './styles/Global';
+//import { Container } from './style';
 export default function App() {
   const Stack=createStackNavigator();
   return (
@@ -40,7 +41,7 @@ export default function App() {
             </Stack.Navigator>
         </NavigationContainer>
 
-   
+       
   );
 }
 

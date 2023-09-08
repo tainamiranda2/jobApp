@@ -2,8 +2,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default StyleSheet.create({
     container:{
-       
-        backgroundColor:'#0097b2,#7ed957',
+        //colors:['#ffa700', '#ff9300', #7ed957],
+      
+        backgroundColor:'#0097b2',
         aligtItems:'center',
        justifyContent:'center'
     },
@@ -11,8 +12,17 @@ export default StyleSheet.create({
 backgroundColor:'#fff',
 padding:30,
 borderRadius:10,
-width:400,
+width:200,
+justifyContent: 'space-between',
 margin:20
+    },
+    CardR:{
+        backgroundColor:'#fff',
+        padding:30,
+        borderRadius:10,
+        width:300,
+        margin:20,
+      justifyContent: 'flex-end'
     },
 
     texto:{
