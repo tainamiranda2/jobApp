@@ -1,6 +1,7 @@
 import { View, Text, Button } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
+import Global from '../../styles/Global';
 
 export default function Menu (){
     const navigation =useNavigation();
@@ -21,13 +22,29 @@ export default function Menu (){
     }
 
     return(
-        <View>
+        <View style={Global.container} >
             <Text>Notificação</Text>
-            <Button title="Ver candidaturas" onPress={()=>Pages('Candidatura')}/>
-            <Button title="Ver empresas" onPress={()=>Pages('Empresas')}/>
-            <Button title="Ver cargos" onPress={()=>Pages('Cargos')}/>
-            <Button title="Ver perfil" onPress={()=>Pages('Perfil')}/>
-            <Button title="Dashboard" onPress={()=>Pages('Dashboard')}/>
+            <Text style={Global.Card} 
+            //title="Ver candidaturas" 
+            //onPress={()=>Pages('Candidatura')}
+            >Ver candidaturas</Text>
+            <Text style={Global.Card} 
+            //title="Ver empresas"
+           // onPress={()=>Pages('Empresas')}
+             >Ver empresas</Text>
+            <Text 
+             style={Global.Card} 
+           // title="Ver cargos"
+            // onPress={()=>Pages('Cargos')}
+             >Ver cargos</Text>
+            <Text  style={Global.Card} 
+            //title="Ver perfil" 
+          //  onPress={()=>Pages('Perfil')}
+          >Ver perfil</Text>
+            <Text style={Global.Card} 
+            //title="Dashboard"
+           //  onPress={()=>Pages('Dashboard')}
+           >Dashboard</Text>
         </View>
     )
 }

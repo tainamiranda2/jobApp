@@ -16,12 +16,14 @@ import Resultados from "./pages/dashboard/Resultados";
 import Empresas from "./pages/empresas/Empresas";
 import Notificacao from "./pages/notificacao/Notificacao";
 
+import Global from './styles/Global';
 export default function App() {
   const Stack=createStackNavigator();
   return (
     
    <NavigationContainer >
-            <Stack.Navigator initialRouteName="Login">
+
+            <Stack.Navigator style={Global.container} initialRouteName="Menu">
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Menu" component={Menu}/>
                 <Stack.Screen name="Cargos" component={Cargos}/>
