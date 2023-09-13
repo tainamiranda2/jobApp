@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Modal, FlatList,Button, SafeAreaView } from "react-native";
 
+import Global from '../../styles/Global';
 export default function Candidatura() {
   const [isModalVisible, setIsModalVisible]=useState('')
   const [selectedEmpresa, setSelectedEmpresa] = useState(null);
@@ -43,36 +44,38 @@ export default function Candidatura() {
   );
 
   return (
-    <View>
-      <Text>Candidatura</Text>
+    <View style={Global.form}>
+      <Text >Candidatura</Text>
 
       <SafeAreaView>
         <Text>Empresa</Text>
         <TouchableOpacity onPress={() => openModal('empresa')}>
-          <Text>{selectedEmpresa || 'Selecione'}</Text>
+          <Text  style={Global.formSelect}>{selectedEmpresa || 'Selecione'}</Text>
         </TouchableOpacity>
       </SafeAreaView>
 
       <SafeAreaView>
         <Text>Cargo</Text>
         <TouchableOpacity onPress={() => openModal('cargo')}>
-          <Text>{selectedCargo || 'Selecione'}</Text>
+          <Text style={Global.formSelect}>{selectedCargo || 'Selecione'}</Text>
         </TouchableOpacity>
       </SafeAreaView>
 
       <SafeAreaView>
         <Text>Data</Text>
         <TouchableOpacity onPress={() => openModal('data')}>
-          <Text>{selectedData || 'Selecione'}</Text>
+          <Text style={Global.formSelect}>{selectedData || 'Selecione'}</Text>
         </TouchableOpacity>
       </SafeAreaView>
 
       <Button title={"Cadastrar"} />
 
+
+
       {/* Modais */}
       <Modal transparent={true} animationType="slide" visible={isModalVisible === 'empresa'}>
-        <View>
-          <Text>Escolha uma empresa:</Text>
+        <View style={Global.formSelectModal}>
+          <Text >Escolha uma empresa:</Text>
           <FlatList
             data={empresas}
             renderItem={({ item }) => renderItem(item, setSelectedEmpresa)}
@@ -85,9 +88,10 @@ export default function Candidatura() {
       </Modal>
 
       <Modal transparent={true} animationType="slide" visible={isModalVisible === 'cargo'}>
-        <View>
-          <Text>Escolha um cargo:</Text>
+        <View style={Global.formSelectModal}>
+          <Text >Escolha um cargo:</Text>
           <FlatList
+          
             data={cargos}
             renderItem={({ item }) => renderItem(item, setSelectedCargo)}
             keyExtractor={(item) => item}
@@ -99,7 +103,7 @@ export default function Candidatura() {
       </Modal>
 
       <Modal transparent={true} animationType="slide" visible={isModalVisible === 'data'}>
-        <View>
+        <View  style={Global.formSelectModal}>
           <Text>Escolha uma data:</Text>
           <FlatList
             data={datas}
