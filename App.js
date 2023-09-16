@@ -32,7 +32,7 @@ export default function App() {
                 <Stack.Screen name="Dashboard" component={Dashboard}/>
                 <Stack.Screen name="Empresas" component={Empresas}/>
                 <Stack.Screen name="Notificacao" component={Notificacao}/>
-                <Stack.Screen name="Motivo" component={Motivo}/>
+                <Stack.Screen name="Motivos" component={Motivo}/>
                 <Stack.Screen name="Regioes" component={Regioes}/>
                 <Stack.Screen name="Respostas" component={Respostas}/>
                 <Stack.Screen name="Resultados" component={Resultados}/>

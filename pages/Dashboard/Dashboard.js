@@ -1,4 +1,5 @@
-import { View,Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+
 import { useNavigation } from '@react-navigation/native';
 
 import Global from '../../styles/Global';
