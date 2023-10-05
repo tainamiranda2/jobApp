@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, FlatList,Button, SafeAreaView } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity, Modal, FlatList,Button, SafeAreaView } from "react-native";
 
 import Global from '../../styles/Global';
 export default function Candidatura() {
@@ -44,10 +44,13 @@ export default function Candidatura() {
   );
 
   return (
-    <View style={Global.form}>
-      <Text >Candidatura</Text>
+    <ImageBackground   source={require('../../fundo.png')}>
 
-      <SafeAreaView>
+    <View style={Global.form}>
+      <Text  style={Global.formText}>Cadastre uma vaga</Text>
+
+<View style={Global.formInputs}>
+      <SafeAreaView >
         <Text>Empresa</Text>
         <TouchableOpacity onPress={() => openModal('empresa')}>
           <Text  style={Global.formSelect}>{selectedEmpresa || 'Selecione'}</Text>
@@ -68,8 +71,8 @@ export default function Candidatura() {
         </TouchableOpacity>
       </SafeAreaView>
 
-      <Button title={"Cadastrar"} />
-
+      <Button style={Global.Button} title={"Cadastrar"} />
+      </View>
 
 
       {/* Modais */}
@@ -116,5 +119,6 @@ export default function Candidatura() {
         </View>
       </Modal>
     </View>
+    </ImageBackground>
   );
 }

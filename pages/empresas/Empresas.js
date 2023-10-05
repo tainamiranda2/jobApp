@@ -1,5 +1,5 @@
 import Global from '../../styles/Global';
-import { View, Text, TouchableOpacity, Modal, TextInput, FlatList,Button, SafeAreaView } from "react-native";
+import { ImageBackground,View, Text, TouchableOpacity, Modal, TextInput, FlatList,Button, SafeAreaView } from "react-native";
 import React, { useState } from "react";
 export default function Empresas (){
     const [isModalVisible, setIsModalVisible]=useState('')
@@ -31,11 +31,13 @@ export default function Empresas (){
       );
     
     return(
-        <View>
-            <Text>Empresa</Text>
+      <ImageBackground   source={require('../../fundo.png')}>
+        <View style={Global.form}>
+        <View style={Global.formInputs}>
+            <Text style={Global.formText}>Empresa</Text>
             <TextInput style={Global.formInput} 
-
              placeholder='Nome'/>
+             
             <TextInput  style={Global.formInput}
              placeholder='Descrição(Opcional)'/>
          
@@ -67,5 +69,7 @@ export default function Empresas (){
            
              />
         </View>
+        </View>
+        </ImageBackground>
     )
 }

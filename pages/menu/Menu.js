@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Global from '../../styles/Global';
 
@@ -20,7 +20,8 @@ export default function Menu() {
     }
 
     return (
-        <View style={Global.container} >
+        <ImageBackground   source={require('../../fundo.png')}>
+        <View  >
             <Text>Notificação</Text>
             
             <TouchableOpacity onPress={() => Pages('Candidatura')}>
@@ -39,5 +40,6 @@ export default function Menu() {
                 <Text style={Global.Card}>Dashboard</Text>
             </TouchableOpacity>
         </View>
+        </ImageBackground>
     )
 }

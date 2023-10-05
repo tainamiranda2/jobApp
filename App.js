@@ -24,7 +24,7 @@ export default function App() {
     
    <NavigationContainer >
 
-            <Stack.Navigator style={Global.container} initialRouteName="Menu">
+            <Stack.Navigator style={Global.container} initialRouteName="Login">
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Menu" component={Menu}/>
                 <Stack.Screen name="Cargos" component={Cargos}/>

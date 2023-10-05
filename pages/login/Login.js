@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-
+import { StyleSheet,ImageBackground, Text, View, Button, TextInput } from 'react-native';
+import Global from '../../styles/Global';
 //import ButtonL from '../../components/ButtonL';
 
 
@@ -11,13 +11,17 @@ const navigation =useNavigation();
         navigation.navigate('Menu')
     }
     return(
-        <View>
-            <Text>JobApp</Text>
-            <Text >Loin</Text>
-            <TextInput  value={"Email"} placeholder='Email'/>
-            <TextInput value={"Senha"}  placeholder='Email'/>
+        <ImageBackground   source={require('../../fundo.png')}>
+         <Text >JobApp</Text>
+        <View style={Global.form}>
+        <View style={Global.formInputs}>
+            <Text style={Global.formText}>Login</Text>
+            <TextInput  style={Global.formInput}   placeholder='Email'/>
+            <TextInput  style={Global.formInput} placeholder='Email'/>
             <Button title={"Log in"} onPress={Menu}/>
         </View>
+        </View>
+        </ImageBackground>
     )
 }
 

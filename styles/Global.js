@@ -8,6 +8,10 @@ export default StyleSheet.create({
        // aligtItems:'center',
        //justifyContent:'center'
     },
+    Login:{
+
+    },
+
     Card:{
         backgroundColor:'#fff',
         padding:50,
@@ -39,12 +43,27 @@ export default StyleSheet.create({
         textAlign:'center',
         margin:20
     },
+    formText:{
+fontSize:20,
+textAlign:'center',
 
+
+    },
     form:{
-        margin:20,
+        marginTop:100,
+        backgroundColor:'#fff',
+        width:'100%',
+        height:'100%',
+        borderTopLeftRadius:50
+    },
+    formInputs:{
+        margin:40,
+    },
+    Button:{
+
     },
     formSelect:{
-        marginTop:20,
+        marginTop:10,
         backgroundColor: '#D3D3D3',
         padding:20,
         borderRadius:20,
@@ -56,17 +75,23 @@ export default StyleSheet.create({
         width:500,
         marginTop:200,
         justifyContent:'center',
-        backgroundColor:   '#00FF00'
+      //  backgroundColor:   '#00FF00'
     },
     formInput:{
-        padding:30,
-        fontSize:20,
-        borderColor:'#000'
+        margin:10,
+        borderWidth: 1,
+        borderBottomColor: '#000',
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        padding: 10,
     },
     formButton:{
         padding:50,
         fontSize:20,
-        backgroundColor:'#00FF00'
+    },
+    button:{
+        ImageBackground:  'url("./fundo.png")',
     }
 })
 

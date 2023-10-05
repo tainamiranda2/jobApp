@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ImageBackground} from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,9 +19,10 @@ export default function Dashboard (){
         }
     }
     return(
+        <ImageBackground   source={require('../../fundo.png')}>
         <View>
             <Text>Dashboard</Text>
-            <View style={Global.container} >
+            <View>
             <TouchableOpacity onPress={() => Pages('Regioes')}>
                 <Text style={Global.Card}>Regiões</Text>
             </TouchableOpacity>
@@ -37,5 +38,6 @@ export default function Dashboard (){
            
           </View>
         </View>
+        </ImageBackground>
     )
 }
