@@ -32,7 +32,7 @@ export default StyleSheet.create({
 
     texto:{
         margin:'10px',
-        color:'#D3D3D3',
+        color:'#fff',
         fontSize:14,
         textAlign:'center',
         
@@ -50,7 +50,7 @@ textAlign:'center',
 
     },
     form:{
-        marginTop:100,
+        marginTop:'100px',
         backgroundColor:'#fff',
         width:'100%',
         height:'100%',
@@ -59,11 +59,18 @@ textAlign:'center',
     formInputs:{
         margin:40,
     },
-    Button:{
-
+    ButtonForm:{
+        backgroundColor: '#000',
+        padding: 10,
+        borderRadius: 10,
+        marginTop: 30,
     },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+  },
     formSelect:{
-        marginTop:10,
+        marginTop:20,
         backgroundColor: '#D3D3D3',
         padding:20,
         borderRadius:20,
@@ -87,7 +94,7 @@ textAlign:'center',
         padding: 10,
     },
     formButton:{
-        padding:50,
+        padding:50, ImageBackground:  'url("./fundo.png")',
         fontSize:20,
     },
     button:{

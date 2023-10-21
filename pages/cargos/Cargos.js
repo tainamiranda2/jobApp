@@ -1,4 +1,4 @@
-import { View,Text,TextInput, Button,ImageBackground } from "react-native";
+import { View,Text,TextInput, TouchableOpacity,ImageBackground } from "react-native";
 import Global from '../../styles/Global';
 
 export default function Cargos (){
@@ -18,9 +18,14 @@ export default function Cargos (){
              style={Global.formInput}
              placeholder='Descrição(Opcional)'/>
            
-            <Button title={"Cadastrar"} 
-            //onPress={Menu}
-            />
+           <TouchableOpacity
+        style={Global.ButtonForm}
+        onPress={() => {
+          // Lógica a ser executada ao pressionar o botão
+        }}
+      >
+        <Text style={Global.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
         </View>
         </View>
         </ImageBackground>

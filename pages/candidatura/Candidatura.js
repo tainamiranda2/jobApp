@@ -71,7 +71,14 @@ export default function Candidatura() {
         </TouchableOpacity>
       </SafeAreaView>
 
-      <Button style={Global.Button} title={"Cadastrar"} />
+      <TouchableOpacity
+        style={Global.ButtonForm}
+        onPress={() => {
+          // Lógica a ser executada ao pressionar o botão
+        }}
+      >
+        <Text style={Global.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
       </View>
 
 

@@ -64,10 +64,14 @@ export default function Empresas (){
         </View>
          </Modal>
 
-            <Button title={"Cadastrar"}
-            style={Global.formButton}
-           
-             />
+         <TouchableOpacity
+        style={Global.ButtonForm}
+        onPress={() => {
+          // Lógica a ser executada ao pressionar o botão
+        }}
+      >
+        <Text style={Global.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
         </View>
         </View>
         </ImageBackground>
