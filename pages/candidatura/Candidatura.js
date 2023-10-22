@@ -1,35 +1,52 @@
-import React, { useState } from "react";
-import { View, Text, ImageBackground, TouchableOpacity, Modal, FlatList,Button, SafeAreaView } from "react-native";
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-import Global from '../../styles/Global';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
+import { FontAwesome } from "react-native-vector-icons";
+import axios from "axios";
+import Global from "../../styles/Global";
+
 export default function Candidatura() {
-  const [isModalVisible, setIsModalVisible]=useState('')
+  const [isModalVisible, setIsModalVisible] = useState("");
+  const [empresas, setEmpresas] = useState([]);
+  const [cargos, setCargos] = useState([]);
   const [selectedEmpresa, setSelectedEmpresa] = useState(null);
   const [selectedCargo, setSelectedCargo] = useState(null);
-  const [selectedData, setSelectedData] = useState(null);
+  const [selectedDataInicial, setSelectedDataInicial] = useState(null);
+  const [selectedDataFinal, setSelectedDataFinal] = useState(null);
 
-  const empresas = ['Empresa A', 'Empresa B', 'Empresa C'];
-  const cargos = ['Cargo 1', 'Cargo 2', 'Cargo 3'];
-  const datas = ['Data 1', 'Data 2', 'Data 3'];
+  useEffect(() => {
+    // Buscar empresas da API
+    axios
+      .get("http://localhost/jobApp-api/empresa")
+      .then((response) => {
+        setEmpresas(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao recuperar empresas:", error);
+      });
+
+    // Buscar cargos da API
+    axios
+      .get("http://localhost/jobApp-api/cargo")
+      .then((response) => {
+        setCargos(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao recuperar cargos:", error);
+      });
+  }, []);
 
   const openModal = (modalName) => {
-    switch (modalName) {
-      case 'empresa':
-        setSelectedCargo(null);
-        setSelectedData(null);
-        setSelectedEmpresa(null);
-        break;
-      case 'cargo':
-        setSelectedEmpresa(null);
-        setSelectedData(null);
-        break;
-      case 'data':
-        setSelectedEmpresa(null);
-        setSelectedCargo(null);
-        break;
-      default:
-        break;
-    }
     setIsModalVisible(modalName);
   };
 
@@ -37,59 +54,125 @@ export default function Candidatura() {
     setIsModalVisible(null);
   };
 
+  const handleCadastro = async() => {
+    try {
+      // Verificar se todos os campos necessários estão preenchidos
+      if (!selectedEmpresa || !selectedCargo || !selectedDataInicial || !selectedDataFinal) {
+        console.error("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const empresaId = Number(selectedEmpresa.id);
+      const cargoId = Number(selectedCargo.id);
+      const dataInicial = selectedDataInicial.toISOString().slice(0, 19);
+      const dataFinal = selectedDataFinal.toISOString().slice(0, 19);
+  
+      // Enviar os dados para a API
+      const response = await axios.post("http://localhost/jobApp-api/vaga/add", {
+        empresa_id: empresaId,
+      cargo_id: cargoId,
+      data_inicial: dataInicial,
+      data_final: dataFinal,
+      });
+
+      // Verificar se a API respondeu com sucesso
+      if (response.status === 200) {
+        console.log("Vaga cadastrada com sucesso!");
+        // Limpar os campos após o cadastro
+        setSelectedEmpresa(null);
+        setSelectedCargo(null);
+        setSelectedDataInicial(null);
+        setSelectedDataFinal(null);
+      } else {
+        console.error("Erro ao cadastrar vaga aqui:", response.data);
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar vaga:", error.message);
+    }
+  };
+
+  const formatDate = (date) => {
+    const options = { year: "numeric", month: "numeric", day: "numeric" };
+    return new Intl.DateTimeFormat("pt-BR", options).format(date);
+  };
+
   const renderItem = (item, onSelect) => (
     <TouchableOpacity onPress={() => onSelect(item)}>
-      <Text>{item}</Text>
+      <Text>{item.nome}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <ImageBackground   source={require('../../fundo.png')}>
+    <ImageBackground source={require("../../fundo.png")}>
+      <FontAwesome
+        style={Global.Notification}
+        name="bell"
+        size={30}
+        color="white"
+      />
+      <FontAwesome name="arrow-left" size={30} color="white" />
 
-    <View style={Global.form}>
-      <Text  style={Global.formText}>Cadastre uma vaga</Text>
+      <View style={Global.form}>
+        <Text style={Global.formText}>Cadastre uma vaga</Text>
 
-<View style={Global.formInputs}>
-      <SafeAreaView >
-        <Text>Empresa</Text>
-        <TouchableOpacity onPress={() => openModal('empresa')}>
-          <Text  style={Global.formSelect}>{selectedEmpresa || 'Selecione'}</Text>
+        <SafeAreaView>
+          <Text>Empresa</Text>
+          <TouchableOpacity onPress={() => openModal("empresa")}>
+            <Text style={Global.formSelect}>
+              {selectedEmpresa?.nome || "Selecione"}
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+
+        <SafeAreaView>
+          <Text>Cargo</Text>
+          <TouchableOpacity onPress={() => openModal("cargo")}>
+            <Text style={Global.formSelect}>
+              {selectedCargo?.nome || "Selecione"}
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+
+        <SafeAreaView>
+          <Text>Data Inicial</Text>
+          <TouchableOpacity onPress={() => openModal("dataInicial")}>
+            <Text style={Global.formSelect}>
+              {selectedDataInicial
+                ? formatDate(selectedDataInicial)
+                : "Selecione"}
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+
+        <SafeAreaView>
+          <Text>Data Final</Text>
+          <TouchableOpacity onPress={() => openModal("dataFinal")}>
+            <Text style={Global.formSelect}>
+              {selectedDataFinal ? formatDate(selectedDataFinal) : "Selecione"}
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+
+        <TouchableOpacity
+          style={Global.ButtonForm}
+          onPress={handleCadastro}
+        >
+          <Text style={Global.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
-      </SafeAreaView>
-
-      <SafeAreaView>
-        <Text>Cargo</Text>
-        <TouchableOpacity onPress={() => openModal('cargo')}>
-          <Text style={Global.formSelect}>{selectedCargo || 'Selecione'}</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-
-      <SafeAreaView>
-        <Text>Data</Text>
-        <TouchableOpacity onPress={() => openModal('data')}>
-          <Text style={Global.formSelect}>{selectedData || 'Selecione'}</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-
-      <TouchableOpacity
-        style={Global.ButtonForm}
-        onPress={() => {
-          // Lógica a ser executada ao pressionar o botão
-        }}
-      >
-        <Text style={Global.buttonText}>Cadastrar</Text>
-      </TouchableOpacity>
       </View>
 
-
       {/* Modais */}
-      <Modal transparent={true} animationType="slide" visible={isModalVisible === 'empresa'}>
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible === "empresa"}
+      >
         <View style={Global.formSelectModal}>
-          <Text >Escolha uma empresa:</Text>
+          <Text>Escolha uma empresa:</Text>
           <FlatList
             data={empresas}
             renderItem={({ item }) => renderItem(item, setSelectedEmpresa)}
-            keyExtractor={(item) => item}
+            keyExtractor={(item) => item.id.toString()}
           />
           <TouchableOpacity onPress={closeModal}>
             <Text>Fechar</Text>
@@ -97,14 +180,17 @@ export default function Candidatura() {
         </View>
       </Modal>
 
-      <Modal transparent={true} animationType="slide" visible={isModalVisible === 'cargo'}>
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible === "cargo"}
+      >
         <View style={Global.formSelectModal}>
-          <Text >Escolha um cargo:</Text>
+          <Text>Escolha um cargo:</Text>
           <FlatList
-          
             data={cargos}
             renderItem={({ item }) => renderItem(item, setSelectedCargo)}
-            keyExtractor={(item) => item}
+            keyExtractor={(item) => item.id.toString()}
           />
           <TouchableOpacity onPress={closeModal}>
             <Text>Fechar</Text>
@@ -112,20 +198,40 @@ export default function Candidatura() {
         </View>
       </Modal>
 
-      <Modal transparent={true} animationType="slide" visible={isModalVisible === 'data'}>
-        <View  style={Global.formSelectModal}>
-          <Text>Escolha uma data:</Text>
-          <FlatList
-            data={datas}
-            renderItem={({ item }) => renderItem(item, setSelectedData)}
-            keyExtractor={(item) => item}
+      {/* modais da data */}
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible === "dataInicial"}
+      >
+        <View style={Global.formSelectModal}>
+          <Text>Escolha uma data inicial:</Text>
+          <DatePicker
+            selected={selectedDataInicial}
+            onChange={(date) => setSelectedDataInicial(date)}
           />
           <TouchableOpacity onPress={closeModal}>
             <Text>Fechar</Text>
           </TouchableOpacity>
         </View>
       </Modal>
-    </View>
+
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible === "dataFinal"}
+      >
+        <View style={Global.formSelectModal}>
+          <Text>Escolha uma data final:</Text>
+          <DatePicker
+            selected={selectedDataFinal}
+            onChange={(date) => setSelectedDataFinal(date)}
+          />
+          <TouchableOpacity onPress={closeModal}>
+            <Text>Fechar</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </ImageBackground>
   );
 }

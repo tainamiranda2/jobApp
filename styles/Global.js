@@ -1,17 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 export default StyleSheet.create({
-    container:{
-        //colors:['#ffa700', '#ff9300', #7ed957],
-      
-        backgroundColor:'#0097b2',
-       // aligtItems:'center',
-       //justifyContent:'center'
-    },
-    Login:{
-
-    },
-
     Card:{
         backgroundColor:'#fff',
         padding:50,
@@ -37,12 +26,7 @@ export default StyleSheet.create({
         textAlign:'center',
         
     },
-    textoLogin:{
-        color:'#00FF00',
-        fontSize:20,
-        textAlign:'center',
-        margin:20
-    },
+  
     formText:{
 fontSize:20,
 textAlign:'center',
@@ -84,6 +68,9 @@ textAlign:'center',
         justifyContent:'center',
       //  backgroundColor:   '#00FF00'
     },
+    inputSelect:{
+
+    },
     formInput:{
         margin:10,
         borderWidth: 1,
@@ -94,11 +81,14 @@ textAlign:'center',
         padding: 10,
     },
     formButton:{
-        padding:50, ImageBackground:  'url("./fundo.png")',
+        padding:50,
+         ImageBackground:  'url("./fundo.png")',
         fontSize:20,
     },
-    button:{
-        ImageBackground:  'url("./fundo.png")',
+    Notification:{
+        position: 'absolute',
+        top: 20,
+        right: 20, 
     }
 })
 

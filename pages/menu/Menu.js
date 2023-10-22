@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Global from '../../styles/Global';
-
+import { FontAwesome } from 'react-native-vector-icons';
 export default function Menu() {
     const navigation = useNavigation();
 
@@ -21,9 +21,12 @@ export default function Menu() {
 
     return (
         <ImageBackground   source={require('../../fundo.png')}>
-        <View  >
-            <Text>Notificação</Text>
-            
+      
+        <View>
+       
+       <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+       <FontAwesome  name="arrow-left" size={30} color="white" />
+
             <TouchableOpacity onPress={() => Pages('Candidatura')}>
                 <Text style={Global.Card}>Ver candidaturas</Text>
             </TouchableOpacity>

@@ -1,9 +1,10 @@
 //import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
 //import Login from './pages/login/Login';
 //import Rotas from './rotas';
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+
 import Login from "./pages/login/Login";
 import Menu from "./pages/menu/Menu";
 import Cargos from "./pages/cargos/Cargos";
@@ -24,18 +25,18 @@ export default function App() {
     
    <NavigationContainer >
 
-            <Stack.Navigator style={Global.container} initialRouteName="Login">
-                <Stack.Screen name="Login" component={Login}/>
-                <Stack.Screen name="Menu" component={Menu}/>
-                <Stack.Screen name="Cargos" component={Cargos}/>
-                <Stack.Screen name="Candidatura" component={Candidatura}/>
-                <Stack.Screen name="Dashboard" component={Dashboard}/>
-                <Stack.Screen name="Empresas" component={Empresas}/>
-                <Stack.Screen name="Notificacao" component={Notificacao}/>
-                <Stack.Screen name="Motivos" component={Motivo}/>
-                <Stack.Screen name="Regioes" component={Regioes}/>
-                <Stack.Screen name="Respostas" component={Respostas}/>
-                <Stack.Screen name="Resultados" component={Resultados}/>
+            <Stack.Navigator style={Global.container} >
+                <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+                <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }}/>
+                <Stack.Screen name="Cargos" component={Cargos} options={{ headerShown: false }}/>
+                <Stack.Screen name="Candidatura" component={Candidatura} options={{ headerShown: false }}/>
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }}/>
+                <Stack.Screen name="Empresas" component={Empresas} options={{ headerShown: false }}/>
+                <Stack.Screen name="Notificacao" component={Notificacao} options={{ headerShown: false }}/>
+                <Stack.Screen name="Motivos" component={Motivo} options={{ headerShown: false }}/>
+                <Stack.Screen name="Regioes" component={Regioes} options={{ headerShown: false }}/>
+                <Stack.Screen name="Respostas" component={Respostas} options={{ headerShown: false }}/>
+                <Stack.Screen name="Resultados" component={Resultados} options={{ headerShown: false }}/>
 
            
             </Stack.Navigator>

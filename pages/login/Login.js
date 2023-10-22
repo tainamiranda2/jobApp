@@ -18,7 +18,11 @@ const navigation =useNavigation();
         <View style={Global.form}>
         <View style={Global.formInputs}>
             <Text style={Global.formText}>Login</Text>
+
+            <Text >Nome</Text>
             <TextInput  style={Global.formInput}   placeholder='Email'/>
+
+            <Text >Email</Text>
             <TextInput  style={Global.formInput} placeholder='Email'/>
             
          <TouchableOpacity
