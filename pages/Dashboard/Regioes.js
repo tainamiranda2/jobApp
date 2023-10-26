@@ -1,6 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,ImageBackground, TouchableOpacity } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import { FontAwesome } from "react-native-vector-icons";
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import Global from '../../styles/Global';
 
 export default function Regioes() {
   const data = [
@@ -46,9 +50,21 @@ export default function Regioes() {
     backgroundGradientTo: '#fff', // Fundo branco
   color: (opacity = 1) => ` ${opacity})`, // Cor preta para o gráfico
   };
+  const navigation =useNavigation();
 
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+    <ImageBackground source={require('../../fundo.png')}>
+            <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+    </TouchableOpacity>
+
+    <View
+    style={Global.form}
+    // style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
+     >
       <Text>Regiões de envio</Text>
       <PieChart
         data={data}
@@ -61,5 +77,6 @@ export default function Regioes() {
         absolute
       />
     </View>
+    </ImageBackground>
   );
 }

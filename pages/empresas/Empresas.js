@@ -3,6 +3,7 @@ import { ImageBackground, View, Text, TouchableOpacity, Modal, TextInput, FlatLi
 import React, { useState } from "react";
 import axios from 'axios';
 import { FontAwesome } from "react-native-vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 export default function Empresas() {
   const [isModalVisible, setIsModalVisible] = useState('');
@@ -62,16 +63,17 @@ export default function Empresas() {
     </TouchableOpacity>
   );
 
- 
+  const navigation =useNavigation();
+
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
 
   return (
     <ImageBackground source={require('../../fundo.png')}>
-          <FontAwesome
-        style={Global.Notification}
-        name="bell"
-        size={30}
-        color="white"
-      />
+           <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+  </TouchableOpacity>
       <View style={Global.form}>
       <Text style={Global.formText}>Empresa</Text>
         <View style={Global.formInputs}>

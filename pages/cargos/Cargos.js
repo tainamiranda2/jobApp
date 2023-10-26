@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import Global from '../../styles/Global';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import { FontAwesome } from "react-native-vector-icons";
 
 export default function Cargos() {
   const [nomeCargo, setNomeCargo] = useState('');
@@ -34,9 +36,17 @@ export default function Cargos() {
       alert('Erro ao cadastrar cargo. Por favor, tente novamente.');
     }
   };
+  const navigation =useNavigation();
 
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
   return (
     <ImageBackground source={require('../../fundo.png')}>
+           <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+  </TouchableOpacity>
+
       <View style={Global.form}>
         <View style={Global.formInputs}>
 

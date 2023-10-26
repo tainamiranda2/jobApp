@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigation } from '@react-navigation/native';
 
 import {
   View,
@@ -101,7 +102,11 @@ export default function Candidatura() {
       <Text>{item.nome}</Text>
     </TouchableOpacity>
   );
+  const navigation =useNavigation();
 
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
   return (
     <ImageBackground source={require("../../fundo.png")}>
       <FontAwesome
@@ -110,7 +115,9 @@ export default function Candidatura() {
         size={30}
         color="white"
       />
-      <FontAwesome name="arrow-left" size={30} color="white" />
+     <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+  </TouchableOpacity>
 
       <View style={Global.form}>
         <Text style={Global.formText}>Cadastre uma vaga</Text>

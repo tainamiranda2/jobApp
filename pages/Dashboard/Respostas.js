@@ -1,6 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,ImageBackground,TouchableOpacity } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { FontAwesome } from "react-native-vector-icons";
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import Global from '../../styles/Global';
 
 export default function Respostas() {
   const data = {
@@ -13,9 +17,20 @@ export default function Respostas() {
       },
     ],
   };
+  const navigation =useNavigation();
 
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+    <ImageBackground source={require('../../fundo.png')}>
+      <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+    </TouchableOpacity>
+
+    <View style={Global.form}
+    // style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
+     >
       <Text>Respostas</Text>
       <LineChart
         data={data}
@@ -29,5 +44,6 @@ export default function Respostas() {
         }}
       />
     </View>
+    </ImageBackground>
   );
 }

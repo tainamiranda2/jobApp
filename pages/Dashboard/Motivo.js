@@ -1,6 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,ImageBackground, TouchableOpacity } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
+import { FontAwesome } from "react-native-vector-icons";
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import Global from '../../styles/Global';
+
 
 export default function Motivo() {
   const data = {
@@ -18,11 +23,23 @@ export default function Motivo() {
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   //  strokeWidth: 2,
   };
+  const navigation =useNavigation();
 
+  const handleVoltarMenu = () => {
+    navigation.goBack()
+  };
   return (
+    <ImageBackground source={require('../../fundo.png')}>
+            <TouchableOpacity onPress={() => handleVoltarMenu()}>
+    <FontAwesome name="arrow-left" size={30} color="white" />
+    </TouchableOpacity>
+
     <View>  
         <Text>Motivo de recusa/fracasso</Text>
-    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginLeft: 10 }}>
+    <View 
+    style={Global.form}
+   // style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginLeft: 10 }}
+    >
    
       <BarChart
             style={{ height: 200, width: 300 }}
@@ -37,5 +54,6 @@ export default function Motivo() {
       />
      </View>
     </View>
+    </ImageBackground>
   );
 }
