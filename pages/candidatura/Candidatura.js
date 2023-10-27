@@ -85,6 +85,7 @@ export default function Candidatura() {
         setSelectedDataInicial(null);
         setSelectedDataFinal(null);
         alert('Cargo cadastrado com sucesso!');
+        
       } else {
         console.error("Erro ao cadastrar vaga aqui:", response.data);
       }
@@ -110,19 +111,19 @@ export default function Candidatura() {
   };
   return (
     <ImageBackground source={require("../../fundo.png")}>
-      <FontAwesome
-        style={Global.Notification}
-        name="bell"
-        size={30}
-        color="white"
-      />
+
+<View style={Global.Conjunto}>
+  
      <TouchableOpacity onPress={() => handleVoltarMenu()}>
-    <FontAwesome name="arrow-left" size={30} color="white" />
+     <FontAwesome  name="arrow-left" size={30} color="white"/>
+
   </TouchableOpacity>
-
+  <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+    </View>
       <View style={Global.form}>
+     
         <Text style={Global.formText}>Cadastre uma vaga</Text>
-
+<View  style={Global.formInputs}>
         <SafeAreaView>
           <Text>Empresa</Text>
           <TouchableOpacity onPress={() => openModal("empresa")}>
@@ -240,6 +241,7 @@ export default function Candidatura() {
           </TouchableOpacity>
         </View>
       </Modal>
+      </View>
     </ImageBackground>
   );
 }

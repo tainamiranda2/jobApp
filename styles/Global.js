@@ -30,8 +30,8 @@ export default StyleSheet.create({
     formText:{
 fontSize:20,
 textAlign:'center',
-
-
+padding:'10',
+fontWeight:700
     },
     form:{
         marginTop:'100px',
@@ -56,7 +56,7 @@ textAlign:'center',
     formSelect:{
         marginTop:20,
         backgroundColor: '#D3D3D3',
-        padding:20,
+        padding:15,
         borderRadius:20,
         fontSize:20
     },
@@ -66,7 +66,8 @@ textAlign:'center',
         width:500,
         marginTop:200,
         justifyContent:'center',
-      //  backgroundColor:   '#00FF00'
+       backgroundColor:   '#fff'
+       
     },
     inputSelect:{
 
@@ -86,9 +87,19 @@ textAlign:'center',
         fontSize:20,
     },
     Notification:{
-        position: 'absolute',
-        top: 20,
-        right: 20, 
+    //    position: 'absolute',
+       // top: 20,
+      //  right: 20, 
+      //  flex: 1
+    },
+    Conjunto:{
+        flexDirection: 'row',
+        justifyContent: 'space-between' 
+    },
+    GraficosStaus:{
+        margin:10,
+        color:"#fff",
+        padding:10
     }
 })
 

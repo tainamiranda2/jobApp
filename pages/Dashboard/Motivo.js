@@ -80,12 +80,16 @@ export default function Motivo() {
 
   return (
     <ImageBackground source={require('../../fundo.png')}>
-      <TouchableOpacity onPress={handleVoltarMenu}>
-        <FontAwesome name="arrow-left" size={30} color="white" />
-      </TouchableOpacity>
+    <View style={Global.Conjunto}>
+  
+  <TouchableOpacity onPress={() => handleVoltarMenu()}>
+  <FontAwesome  name="arrow-left" size={30} color="white"/>
 
+</TouchableOpacity>
+<FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+ </View>
       <View style={Global.form}>
-        <Text>Motivo de recusa/fracasso</Text>
+        <Text style={Global.formText}>Motivo de Recusa/Fracasso</Text>
         <BarChart
           style={{ height: 200, width: 300 }}
           data={data}

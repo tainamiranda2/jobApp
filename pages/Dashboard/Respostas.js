@@ -78,13 +78,16 @@ export default function Respostas() {
 
   return (
     <ImageBackground source={require('../../fundo.png')}>
-      <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
-      <TouchableOpacity onPress={() => handleVoltarMenu()}>
-        <FontAwesome name="arrow-left" size={30} color="white" />
-      </TouchableOpacity>
+   <View style={Global.Conjunto}>
+  
+  <TouchableOpacity onPress={() => handleVoltarMenu()}>
+  <FontAwesome  name="arrow-left" size={30} color="white"/>
 
+</TouchableOpacity>
+<FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+ </View>
       <View style={Global.form}>
-        <Text>Empresas com mais candidaturas</Text>
+        <Text style={Global.formText}>Empresas com respostas mais rápidas por mes</Text>
         <LineChart
           data={data}
           width={300}

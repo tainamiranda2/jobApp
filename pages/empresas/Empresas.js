@@ -71,9 +71,14 @@ export default function Empresas() {
 
   return (
     <ImageBackground source={require('../../fundo.png')}>
-           <TouchableOpacity onPress={() => handleVoltarMenu()}>
-    <FontAwesome name="arrow-left" size={30} color="white" />
-  </TouchableOpacity>
+        <View style={Global.Conjunto}>
+  
+  <TouchableOpacity onPress={() => handleVoltarMenu()}>
+  <FontAwesome  name="arrow-left" size={30} color="white"/>
+
+</TouchableOpacity>
+<FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+      </View>
       <View style={Global.form}>
       <Text style={Global.formText}>Empresa</Text>
         <View style={Global.formInputs}>

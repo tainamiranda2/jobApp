@@ -24,13 +24,15 @@ export default function Dashboard (){
     return(
         <ImageBackground   source={require('../../fundo.png')}>
           
+        
         <View>
-        <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
-        <Text>Dashboard</Text>
-        <TouchableOpacity onPress={() => handleVoltarMenu()}>
-        <FontAwesome name="arrow-left" size={30} color="white" />
-      </TouchableOpacity>
+     <View style={Global.Conjunto}>
+     <FontAwesome onPress={() => handleVoltarMenu()} name="arrow-left" size={30} color="white"/>
 
+       <Text >Dashboard</Text>
+       <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+
+       </View>
             <View>
 
             <TouchableOpacity onPress={() => Pages('Regioes')}>

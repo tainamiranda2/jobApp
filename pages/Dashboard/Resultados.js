@@ -86,18 +86,25 @@ export default function Resultado() {
 
   return (
     <ImageBackground source={require('../../fundo.png')}>
-      <TouchableOpacity onPress={handleVoltarMenu}>
-        <FontAwesome name="arrow-left" size={30} color="white" />
-      </TouchableOpacity>
+  <View style={Global.Conjunto}>
+  
+  <TouchableOpacity onPress={() => handleVoltarMenu()}>
+  <FontAwesome  name="arrow-left" size={30} color="white"/>
+
+</TouchableOpacity>
+<FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+ </View>
 
       <View style={Global.form}>
-        <Text>Resultado</Text>
+        <Text style={Global.formText}>Resultados</Text>
         <BarChart style={{ width: 300, height: 200 }} data={data} width={300} height={200} chartConfig={chartConfig} 
             fromZero={true}/>
+    <View style={Global.GraficosStaus}>
+      <Text style={{backgroundColor: 'green', padding: 10, margin: 5, color:"#fff",}}>Aprovada</Text>
+      <Text style={{backgroundColor: 'red', padding: 10, color:"#fff",  margin: 5, }}>Reprovada</Text>
+      <Text style={{backgroundColor: 'yellow', padding: 10, color:"#fff", margin: 5, }}>Em análise</Text>
       </View>
-      <Text>Aprovada</Text>
-      <Text>Reprovada</Text>
-      <Text>Em análise</Text>
+      </View>
     </ImageBackground>
   );
 }

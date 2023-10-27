@@ -27,7 +27,7 @@ export default function Regioes() {
         const empresasIds = [...new Set(vagas.map((vaga) => vaga.empresa_id))];
     
 
-const coresFixas = ['#0000FF', '#FF0000', '#fff', '#FFFF00', '#008000']; // Cores fixas para cada região
+const coresFixas = ['#0000FF', '#FF0000', '#000', '#FFFF00', '#008000']; // Cores fixas para cada região
 
 const empresasData = await Promise.all(
   empresasIds.map(async (empresaId, index) => {
@@ -63,7 +63,7 @@ const empresasData = await Promise.all(
         population,
         percentage: (population / totalVagas) * 100,
         color: coresFixas[index % coresFixas.length], // Usar cores fixas
-        legendFontColor: '#fff',
+        legendFontColor: '#000',
         legendFontSize: 15,
         key: `${empresaId}-${name}`,
       }));
@@ -96,22 +96,28 @@ setData(empresasComSucesso.flatMap(({ regioesData }) => regioesData));
     fetchData();
   }, []); // A dependência vazia garante que o efeito seja executado apenas uma vez
   const chartConfig = {
-    backgroundGradientFrom: '#ffffff',
-    backgroundGradientTo: '#ffffff',
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientToOpacity: 0,
     color: (opacity = 1) => `rgba(8, 9, 6, ${opacity})`,
   };
   return (
     <ImageBackground source={require('../../fundo.png')}>
-      <TouchableOpacity onPress={handleVoltarMenu}>
-        <FontAwesome name="arrow-left" size={30} color="white" />
-      </TouchableOpacity>
+     <View style={Global.Conjunto}>
+  
+  <TouchableOpacity onPress={() => handleVoltarMenu()}>
+  <FontAwesome  name="arrow-left" size={30} color="white"/>
 
+</TouchableOpacity>
+<FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+ </View>
       <View style={Global.form}>
-        <Text>Regiões de envio por empresa</Text>
+        <Text style={Global.formText}>Regiões de envio por empresa</Text>
         <PieChart data={data} width={300}
          height={200} 
-       
+         backgroundColor={"transparent"}
         chartConfig={chartConfig}
+      //  center={[10, 50]}
+
           accessor="population" absolute />
       </View>
     </ImageBackground>

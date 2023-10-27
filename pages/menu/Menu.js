@@ -23,9 +23,13 @@ export default function Menu() {
         <ImageBackground   source={require('../../fundo.png')}>
       
         <View>
-       
+     <View style={Global.Conjunto}>
+     <FontAwesome  name="arrow-left" size={30} color="white"/>
+
+       <Text >Menu</Text>
        <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
-       <FontAwesome  name="arrow-left" size={30} color="white" />
+
+       </View>
 
             <TouchableOpacity onPress={() => Pages('Candidatura')}>
                 <Text style={Global.Card}>Ver candidaturas</Text>
