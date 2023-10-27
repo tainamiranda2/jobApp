@@ -1,59 +1,102 @@
-import React from 'react';
-import { View, Text,ImageBackground, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
-import { FontAwesome } from "react-native-vector-icons";
+import { FontAwesome } from 'react-native-vector-icons';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Global from '../../styles/Global';
 
-
 export default function Motivo() {
-  const data = {
+  const [data, setData] = useState({
     labels: ['Experiência', 'Entrevista', 'Nível salarial', 'Modalidade'],
     datasets: [
       {
-        data: [20, 45, 28, 80],
+        data: [0, 0, 0, 0],
+        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
       },
     ],
-  };
+  });
 
   const chartConfig = {
     backgroundGradientFrom: '#fff',
     backgroundGradientTo: '#fff',
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-  //  strokeWidth: 2,
   };
-  const navigation =useNavigation();
+
+  const navigation = useNavigation();
 
   const handleVoltarMenu = () => {
-    navigation.goBack()
+    navigation.goBack();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Substitua a URL pela sua API endpoint
+        const response = await axios.get('http://localhost/jobApp-api/vaga');
+
+        // Extrair dados da resposta da API
+        const vagas = response.data;
+
+        // Inicializar contadores
+        let experiencia = 0;
+        let entrevista = 0;
+        let nivelSalarial = 0;
+        let modalidade = 0;
+
+        // Contar vagas por motivo
+        vagas.forEach((vaga) => {
+          const motivo = vaga.motivo;
+
+          if (motivo === 'Experiência') {
+            experiencia++;
+          } else if (motivo === 'Entrevista') {
+            entrevista++;
+          } else if (motivo === 'Nível salarial') {
+            nivelSalarial++;
+          } else if (motivo === 'Modalidade') {
+            modalidade++;
+          }
+        });
+
+        // Atualizar os dados do gráfico
+        setData((prevData) => ({
+          labels: ['Experiência', 'Entrevista', 'Nível salarial', 'Modalidade'],
+          datasets: [
+            {
+              data: [experiencia, entrevista, nivelSalarial, modalidade],
+              color: prevData.datasets[0].color, // Manter a cor existente
+            },
+          ],
+        }));
+      } catch (error) {
+        console.error('Erro ao obter dados da API:', error.message);
+      }
+    };
+
+    // Chamar a função de busca de dados
+    fetchData();
+  }, []); // A dependência vazia garante que o efeito seja executado apenas uma vez
+
   return (
     <ImageBackground source={require('../../fundo.png')}>
-            <TouchableOpacity onPress={() => handleVoltarMenu()}>
-    <FontAwesome name="arrow-left" size={30} color="white" />
-    </TouchableOpacity>
+      <TouchableOpacity onPress={handleVoltarMenu}>
+        <FontAwesome name="arrow-left" size={30} color="white" />
+      </TouchableOpacity>
 
-    <View>  
+      <View style={Global.form}>
         <Text>Motivo de recusa/fracasso</Text>
-    <View 
-    style={Global.form}
-   // style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginLeft: 10 }}
-    >
-   
-      <BarChart
-            style={{ height: 200, width: 300 }}
-        data={data}
-        width={300}
-        height={200}
-        chartConfig={chartConfig}
-        verticalLabelRotation={0} // Rotação dos rótulos no eixo vertical (0 graus)
-        fromZero={true} // Começa a partir do zero no eixo vertical
-     //   yAxisSuffix="%" // Sufixo para os valores no eixo vertical
-        horizontalLabelRotation={0} // Rotação dos rótulos no eixo horizontal (0 graus)
-      />
-     </View>
-    </View>
+        <BarChart
+          style={{ height: 200, width: 300 }}
+          data={data}
+          width={300}
+          height={200}
+          chartConfig={chartConfig}
+          verticalLabelRotation={0}
+          fromZero={true}
+          horizontalLabelRotation={0}
+        />
+      </View>
     </ImageBackground>
   );
 }
