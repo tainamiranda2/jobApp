@@ -78,12 +78,13 @@ export default function Candidatura() {
 
       // Verificar se a API respondeu com sucesso
       if (response.status === 200) {
-        console.log("Vaga cadastrada com sucesso!");
+       // console.log("Vaga cadastrada com sucesso!");
         // Limpar os campos após o cadastro
         setSelectedEmpresa(null);
         setSelectedCargo(null);
         setSelectedDataInicial(null);
         setSelectedDataFinal(null);
+        alert('Cargo cadastrado com sucesso!');
       } else {
         console.error("Erro ao cadastrar vaga aqui:", response.data);
       }

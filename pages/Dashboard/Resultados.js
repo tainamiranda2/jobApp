@@ -44,6 +44,9 @@ export default function Resultado (){
         chartConfig={chartConfig}
       />
         </View>
+<Text>Aprovada</Text>
+<Text>Reprovada</Text>
+<Text>Em análise</Text>
 
         </ImageBackground>
     )

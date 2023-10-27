@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ImageBackground} from "react-native";
-
+import { FontAwesome } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import Global from '../../styles/Global';
@@ -18,11 +18,21 @@ export default function Dashboard (){
             navigation.navigate('Resultados')
         }
     }
+    const handleVoltarMenu = () => {
+        navigation.goBack();
+      };
     return(
         <ImageBackground   source={require('../../fundo.png')}>
+          
         <View>
-            <Text>Dashboard</Text>
+        <FontAwesome style={Global.Notification} name="bell" size={30} color="white" />
+        <Text>Dashboard</Text>
+        <TouchableOpacity onPress={() => handleVoltarMenu()}>
+        <FontAwesome name="arrow-left" size={30} color="white" />
+      </TouchableOpacity>
+
             <View>
+
             <TouchableOpacity onPress={() => Pages('Regioes')}>
                 <Text style={Global.Card}>Regiões</Text>
             </TouchableOpacity>
